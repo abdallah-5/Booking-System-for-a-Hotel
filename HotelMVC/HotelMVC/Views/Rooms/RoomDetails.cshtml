@@ -1,0 +1,123 @@
+﻿@model RoomDetailsVM
+
+@{
+    ViewData["Title"] = "Room Details";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2> Room Number @Model.Room.Number Details</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Room Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Room Details Section Begin -->
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                    <img src="~/assets/img/room/room-details.jpg" alt="">
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3> Room Number @Model.Room.Number </h3>
+                            <div class="rdt-right">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                        <h2>@Model.Room.Price<span>/Pernight</span></h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Branch Name:</td>
+                                    <td>@Model.Room.Branch.BranchLocation</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="r-o">Size:</td>
+                                    <td>@Model.Room.Size ft</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Rom Type:</td>
+                                    <td>@Model.Room.Type</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="r-o">Services:</td>
+                                    <td>Wifi, Television, Bathroom,...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="room-booking">
+                    <h3>Your Reservation</h3>
+                    @using (Html.BeginForm("AddToCart", "Carts", FormMethod.Post))
+                    {
+
+                        <input type="number" value="@Model.Room.Id" asp-for="AddReservationToCart.RoomId" hidden>
+
+                        <div class="check-date">
+                            <label for="date-in">Check In:</label>
+                            
+                            <input type="text" class="date-input" id="date-in" asp-for="AddReservationToCart.StartDate">
+                            <i class="icon_calendar"></i>
+                        </div>
+                        <div class="check-date">
+                            <label for="date-out">Check Out:</label>
+                            <input type="text" class="date-input" id="date-out"asp-for="AddReservationToCart.EndDate">
+                            <i class="icon_calendar"></i>
+                        </div>
+                        <div class="select-option">
+                            <label for="guest">Guests:</label>
+                            <select id="guest" asp-for="AddReservationToCart.PeopleInRoom">
+                                @if (@Model.Room.Type == "SingleRoom")
+                                {
+                                    <option value="1">1 Adult</option>
+                                }
+                                else if (@Model.Room.Type == "DoubleRoom")
+                                {
+                                    <option value="1">1 Adult</option>
+                                    <option value="2">2 Adults</option>
+                                }
+
+                                else
+                                {
+                                    <option value="1">1 Adult</option>
+                                    <option value="2">2 Adults</option>
+                                    <option value="3">3 Adults</option>
+                                    <option value="4">4 Adults</option>
+                                }
+                                
+                            </select>
+                        </div>
+
+                        <button type="submit">Add To Cart</button>
+                   }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Room Details Section End -->

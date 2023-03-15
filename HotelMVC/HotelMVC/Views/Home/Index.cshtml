@@ -1,0 +1,94 @@
+﻿@model HomeVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section Begin -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Intium A Luxury Hotel</h1>
+                    <p>Here are the best hotel booking site, including recommendations for finding low-priced hotel rooms.</p>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-4 col-lg-6 ">
+                <div class="booking-form">
+                    <h3>Booking Your Room</h3>
+                    @using (Html.BeginForm("RoomsAvilable", "Rooms", FormMethod.Post))
+                        {
+                        
+                        <div class="select-option">
+                            <label for="guest">Branch:</label>
+                            <select id="guest" asp-for="SearshInHome.branchId">
+                                 @foreach (var item in Model.Branchs)
+                                    {
+                                    <option value="@item.Id">@Html.DisplayFor(e => item.BranchLocation)</option>
+                                    }
+                               
+                            </select>
+                        </div>
+                        <div class="select-option">
+                            <label for="room">Room Type:</label>
+                            <select id="room" asp-for="SearshInHome.type">
+                                <option value="0">Single</option>
+                                <option value="1">Double</option>
+                                <option value="2">Suite</option>
+                            </select>
+                        </div>
+                        <button type="submit">Check Availability</button>
+                    }
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="../img/hero/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="../img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="../img/hero/hero-3.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- About Us Section Begin -->
+<section class="aboutus-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <div class="section-title">
+                        <span>About Us</span>
+                        <h2>Intercontinental <br /> Hotel</h2>
+                    </div>
+                    <p class="f-para">
+                        Initium.com is a leading online accommodation site. We’re passionate about
+                        travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
+                        languages.
+                    </p>
+                    <p class="s-para">So when it comes to booking the perfect hotel, we’ve got you covered.</p>
+                    <a href="#" class="primary-btn about-btn">Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-pic">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="~/assets/img/about/about-1.jpg" alt="no">
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="~/assets/img/about/about-2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Us Section End -->

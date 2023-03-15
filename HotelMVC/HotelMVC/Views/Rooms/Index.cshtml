@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Room>
+
+@{
+    ViewData["Title"] = "All Rooms Report";
+}
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our Rooms</h2>
+                    <div class="bt-option">
+                        <a href="./home.html">Home</a>
+                        <span>Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+
+            @if (Model.Count() == 0)
+            {
+                <div class="alert alert-warning mt-3" role="alert">
+                    No Categorie in the list ...!
+                </div>
+            }
+
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="room-item">
+                        <img src="assets/img/room/room-6.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Small View</h4>
+                                <h3>@Html.DisplayFor(e => item.Price)$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Branch Name:</td>
+                                            <td>@Html.DisplayFor(e => item.Branch.BranchLocation)</td>
+                                        </tr>
+                                    <tr>
+                                        <td class="r-o">Status:</td>
+                                            @if (@item.Status == 0)
+                                            {
+                                                <td>Avilable</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Booked</td>
+                                            }
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                            <td>@Html.DisplayFor(e => item.Size) ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Rom Type:</td>
+                                            <td>@Html.DisplayFor(e => item.Type)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+
+           
+
+
+
+            <div class="col-lg-12">
+                <div class="room-pagination">
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Rooms Section End -->
